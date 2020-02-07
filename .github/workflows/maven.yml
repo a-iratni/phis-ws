@@ -1,8 +1,7 @@
 name: Java CI
 
 on:
-  pull_request:
-    types: [assigned]
+ push:
     branches:
       - continuous_integration
 jobs:
