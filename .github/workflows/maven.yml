@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Informations
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
           echo "env: ${{ toJson(env) }}"
           echo "github.event.pull_reques: ${{ toJson(github.event.pull_request) }}"
@@ -27,8 +27,6 @@ jobs:
     - name: Build with Maven
       working-directory: ./phis2-ws
       run: |
-       curl -XPOST -H "Accept:application/vnd.github.everest-preview+json"  
-       -H "Content-Type:application/json"
-       -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
+       curl -XPOST -u "a-iratni:${{PAT_TOKEN}}"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
       
       
