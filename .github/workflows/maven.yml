@@ -20,13 +20,13 @@ jobs:
           echo "github.event.pull_reques: ${{ toJson(github.event.pull_request) }}"
           echo "github.event: ${{ toJson(github.event) }}"
           echo "github t: ${{ toJson(github.token) }}"
+          echo REPOSITORY: ${{$GITHUB_REPOSITORY}}
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
     - name: Build with Maven
       working-directory: ./phis2-ws
-      run: |
-       curl -XPOST -u "a-iratni:${{PAT_TOKEN}}"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
+      run: curl -XPOST -u "a-iratni:${{PAT_TOKEN}}"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
       
       
