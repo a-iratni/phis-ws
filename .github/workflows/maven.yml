@@ -1,7 +1,8 @@
 name: Java CI
 
 on:
- push:
+ pull_request:
+    types: [assigned]
     branches:
       - continuous_integration
 jobs:
@@ -12,8 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Informations
-      env:
-       PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
           echo "env: ${{ toJson(env) }}"
           echo "github.event.pull_reques: ${{ toJson(github.event.pull_request) }}"
@@ -26,6 +25,6 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       working-directory: ./phis2-ws
-      run: curl -XPOST -u "a-iratni:${{ secrets.PAT_TOKEN }}"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
+      run: curl -XPOST -u "a-iratni:51893891f7a5c4197ed84de6af99ebb8266d9457"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
       
       
