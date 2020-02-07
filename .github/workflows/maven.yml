@@ -18,7 +18,10 @@ jobs:
           echo "github.event.pull_reques: ${{ toJson(github.event.pull_request) }}"
           echo "github.event: ${{ toJson(github.event) }}"
           echo "github t: ${{ toJson(github.token) }}"
-          echo "pat_token:  '"${{secrets.PAT_TOKEN}}"'    "
+          echo "dollar_secrets:  '"${{secrets}}"'    "
+          echo "secrets: ${{ toJson(secrets) }}"
+          echo "github:: ${{ toJson(github) }}"
+          echo
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
