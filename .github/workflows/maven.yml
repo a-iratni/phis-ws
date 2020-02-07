@@ -27,6 +27,6 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       working-directory: ./phis2-ws
-      run: curl -XPOST -u "a-iratni:${{PAT_TOKEN}}"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
+      run: curl -XPOST -u "a-iratni:$PAT_TOKEN"  -H "Accept:application/vnd.github.everest-preview+json"  -H "Content-Type:application/json" https://api.github.com/repos/a-iratni/opensilex-phis-docker/dispatches --data '{"event_type":"build_application", "client_payload":{"repository":"'"$GITHUB_REPOSITORY"'", "sha":"'"$GITHUB_SHA"'", "ref":"'"$GITHUB_REF"'" }}'
       
       
