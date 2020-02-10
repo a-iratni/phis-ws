@@ -105,7 +105,7 @@ public class userTest extends JerseyTest {
 
         Response response = target("brapi/v1/token").request().post(userEntity); //Here we send POST request
 
-        assertEquals("should return status 201 ( = CREATED)", 1231, response.getStatus());
+        assertEquals("should return status 201 ( = CREATED)", 1607, response.getStatus());
         assertNotNull("Should return TOKEN", response.getEntity().toString());
 
         TokenResponseStructure token = response.readEntity(TokenResponseStructure.class);
