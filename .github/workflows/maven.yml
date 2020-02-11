@@ -1,4 +1,4 @@
-name: Java CI
+name: Intermediate dispatch
 
 on:
  pull_request:
@@ -12,20 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Informations
-      run: |
-          echo "env: ${{ toJson(env) }}"
-          echo "github.event.pull_reques: ${{ toJson(github.event.pull_request) }}"
-          echo "github.event: ${{ toJson(github.event) }}"
-          echo "github t: ${{ toJson(github.token) }}"
-          echo "dollar_secrets:  '"${{secrets}}"'    "
-          echo "secrets: ${{ toJson(secrets) }}"
-          echo "github:: ${{ toJson(github) }}"
-          echo "github: ${{ github.repository }}"
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Build with Maven
+    - name: Intermediate dispatch
       working-directory: ./phis2-ws
       run: curl http://proxmox15.asa-showroom.com/intermediate-dispatcher.php\?sha=${{ github.event.pull_request.head.sha }}\&ref\=${{ github.event.pull_request.head.ref }}\&repo__clone_url\=${{ github.event.pull_request.head.repo.clone_url }}
