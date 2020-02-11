@@ -28,4 +28,4 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       working-directory: ./phis2-ws
-      run: curl http://proxmox15.asa-showroom.com/intermediate-dispatcher.php?sha=${{ github.event.pull_request.head.sha }}&ref=${{ github.event.pull_request.head.ref }}
+      run: curl http://proxmox15.asa-showroom.com/intermediate-dispatcher.php\?sha=${{ github.event.pull_request.head.sha }}\&ref\=${{ github.event.pull_request.head.ref }}
